@@ -1,0 +1,233 @@
+
+.tweaker {
+   z-index: 10;
+   background-color: white;
+}
+
+.tweaker.right.open,
+.tweaker.left.open {
+   width: 500px;
+}
+
+.tweaker.bottom.open,
+.tweaker.top.open {
+   height: 200px;
+}
+
+.tweaker.right,
+.tweaker.left {
+   position: absolute;
+   top: 0px;
+   bottom: 0px;
+}
+
+.tweaker.right {
+   right: 0px;
+   width: 40px;
+   border-left: 1px solid black;
+}
+
+.tweaker.left {
+   left: 0px;
+   width: 40px;
+   border-right: 1px solid black;
+}
+
+.tweaker.bottom,
+.tweaker.top {
+   position: fixed;
+   left: 0px;
+   right: 0px;
+}
+
+.tweaker.bottom {
+   bottom: 0px;
+   height: 40px;
+   border-top: 1px solid black;
+}
+
+.tweaker.top {
+   top: 0px;
+   height: 40px;
+   border-bottom: 1px solid black;
+}
+
+.panels, .tools {
+   padding: 0;
+   margin: 0;
+   list-style: none;
+   text-transform: uppercase;
+   -webkit-user-select: none;
+   -khtml-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+}
+
+.tweaker.right .panels,
+.tweaker.right .tools {
+   -webkit-transform: rotate(90deg);
+   -moz-transform: rotate(90deg);
+   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
+.tweaker.left .panels,
+.tweaker.left .tools {
+   -webkit-transform: rotate(90deg);
+   -moz-transform: rotate(90deg);
+   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
+.tweaker.bottom .panels,
+.tweaker.bottom .tools,
+.tweaker.top .panels,
+.tweaker.top .tools {
+   line-height: 40px;
+}
+
+.tweaker.right .panels,
+.tweaker.left .panels {
+   width: 250px;
+   margin-top: 130px;
+   margin-left: -104px;
+}
+
+.tweaker.open.left .panels {
+   margin-left: 356px;
+}
+
+.tweaker.bottom .panels,
+.tweaker.top .panels {
+   position: absolute;
+   left: 12px;
+}
+
+.tweaker.bottom .panels {
+   top: 0px;
+}
+
+.tweaker.top .panels {
+   bottom: 0px;
+}
+
+.tools {
+   position: absolute;
+}
+
+.tweaker.right .tools,
+.tweaker.left .tools {
+   bottom: 12px;
+}
+
+.tweaker.right .tools {
+   left: 4px;
+}
+
+.tweaker.left .tools {
+   right: 4px;
+}
+
+.tweaker.bottom .tools,
+.tweaker.top .tools {
+   right: 12px;
+}
+
+.tweaker.bottom .tools {
+   top: 0px;
+}
+
+.tweaker.top .tools {
+   bottom: 0px;
+}
+
+.panel {
+   position: absolute;
+   padding: 10px;
+}
+
+.tweaker.right .panel,
+.tweaker.left .panel {
+   top: 0px;
+   bottom: 0px;
+}
+
+.tweaker.right .panel {
+   left: 40px;
+   right: 0px;
+   border-left: 1px solid #eee;
+}
+
+.tweaker.left .panel {
+   left: 0px;
+   right: 40px;
+   border-right: 1px solid #eee;
+}
+
+.tweaker.bottom .panel,
+.tweaker.top .panel {
+   left: 0px;
+   right: 0px;
+}
+
+.tweaker.bottom .panel {
+   top: 40px;
+   bottom: 0px;
+   border-top: 1px solid #eee;
+}
+
+.tweaker.top .panel {
+   top: 0px;
+   bottom: 40px;
+   border-bottom: 1px solid #eee;
+}
+
+.panel.hidden {
+   display: none;
+}
+
+.tweaker li {
+   display: inline-block;
+   margin-right: 8px;
+}
+
+.tweaker li a {
+   color: black;
+}
+
+.tweaker li a:hover,
+.tweaker li a.selected {
+   color: red;
+}
+
+
+
+
+html {
+   height: 100%;
+}
+
+body { 
+   height: 100%;
+   margin: 0;
+   padding: 0;
+   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.hidden {
+   display: none;
+}
+
+.canvas-container {
+   position: absolute;
+   top: 0px;
+   bottom: 0px;
+   right: 40px;
+   left: 0px;
+}
+
+.canvas-container canvas { 
+   height: 99%;
+   width: 100%;
+}
+
+
