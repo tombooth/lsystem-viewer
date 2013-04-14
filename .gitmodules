@@ -1,0 +1,12 @@
+[submodule "deps/es5-shim"]
+	path = deps/es5-shim
+	url = https://github.com/kriskowal/es5-shim.git
+[submodule "deps/polyfills"]
+	path = deps/polyfills
+	url = https://github.com/remy/polyfills.git
+[submodule "deps/tweaker.js"]
+	path = deps/tweaker.js
+	url = https://github.com/tombooth/tweaker.js.git
+[submodule "deps/lsystem.js"]
+	path = deps/lsystem.js
+	url = https://github.com/tombooth/lsystem.js.git
