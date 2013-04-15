@@ -1917,6 +1917,21 @@ var toObject = function (o) {
    window.DrawingBoard.ContextProxy = ContextProxy;
 
 }())
+;
+(function() {
+
+
+   function LSystemSettings(element) {
+
+      element.appendChild(blueprints('lsystem-settings'));
+
+   }
+
+
+   window.LSystemSettings = LSystemSettings;
+
+}());
+
 ;(function(doc) {
 
 var ce="createElement",
@@ -1982,13 +1997,28 @@ window.blueprints = blueprints;
 (function() {
 
 
+   function TurtleSettings(element) {
+
+      element.appendChild(blueprints('turtle-settings'));
+
+   }
+
+
+   window.TurtleSettings = TurtleSettings;
+
+}());
+
+;
+(function() {
+
+
    // Based on http://algorithmicbotany.org/papers/#abop
 
    document.body.appendChild(blueprints('structure'));
-   document.querySelector('.lsystem-settings').appendChild(blueprints('lsystem-settings'));
-   document.querySelector('.turtle-settings').appendChild(blueprints('turtle-settings'));
 
    var settings = new Tweaker(document.querySelector(".settings")),
+       lsystemSettings = new LSystemSettings(document.querySelector(".lsystem-settings")),
+       turtleSettings = new TurtleSettings(document.querySelector(".turtle-settings")),
        drawingBoard = new DrawingBoard(document.querySelector(".canvas-container")),
        context = drawingBoard.getContext();
 

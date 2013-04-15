@@ -5,10 +5,10 @@
    // Based on http://algorithmicbotany.org/papers/#abop
 
    document.body.appendChild(blueprints('structure'));
-   document.querySelector('.lsystem-settings').appendChild(blueprints('lsystem-settings'));
-   document.querySelector('.turtle-settings').appendChild(blueprints('turtle-settings'));
 
    var settings = new Tweaker(document.querySelector(".settings")),
+       lsystemSettings = new LSystemSettings(document.querySelector(".lsystem-settings")),
+       turtleSettings = new TurtleSettings(document.querySelector(".turtle-settings")),
        drawingBoard = new DrawingBoard(document.querySelector(".canvas-container")),
        context = drawingBoard.getContext();
 
