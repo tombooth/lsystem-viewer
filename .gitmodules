@@ -10,3 +10,6 @@
 [submodule "deps/lsystem.js"]
 	path = deps/lsystem.js
 	url = https://github.com/tombooth/lsystem.js.git
+[submodule "deps/subscribable"]
+	path = deps/subscribable
+	url = https://github.com/steveukx/Subscribable.git
