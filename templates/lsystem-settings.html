@@ -1,1 +1,6 @@
-<h1>Lsystem settings</h1>
+<label for="lsystem">Pick an L-System to render: </label>
+<select id="lsystem">
+   ##lsystems.forEach(function(lsystem) {##
+   <option value="##= lsystem##">##= lsystem##</option>
+   ##});##
+</select>

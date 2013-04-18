@@ -14,9 +14,24 @@ blueprints._s = { };
 blueprints._s["lsystem-settings"] = function(data) {
 	var fragment = doc[cf]();
 	with (data||{}){
-	var elem0 = doc[ce]("h1");
+	var elem0 = doc[ce]("label");
+	elem0[sa]("for", "lsystem");
 	fragment[ac](elem0);
-	elem0[ac](doc[ct]("Lsystem settings"));
+	elem0[ac](doc[ct]("Pick an L-System to render: "));
+	
+	var elem3 = doc[ce]("select");
+	elem3[sa]("id", "lsystem");
+	fragment[ac](elem3);
+	lsystems.forEach(function(lsystem) {
+	var elem5 = doc[ce]("option");
+	var elem5_attr0 = "";
+	elem5_attr0 += "";
+	elem5_attr0 += lsystem;
+	elem5_attr0 += "";
+	elem5[sa]("value", elem5_attr0);
+	elem3[ac](elem5);
+	elem5[ac](doc[ct](lsystem));
+	});
 		}
 	return fragment;
 };

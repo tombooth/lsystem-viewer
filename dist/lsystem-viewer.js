@@ -2643,9 +2643,33 @@ if(typeof module !== 'undefined') {
 
    function LSystemSettings(element) {
 
-      element.appendChild(blueprints('lsystem-settings'));
+      element.appendChild(
+         blueprints('lsystem-settings', {
+            lsystems: Object.keys(LSystemSettings.LSYSTEMS)
+         })
+      );
+
+      this.lsystemElement = element.querySelector('#lsystem');
+
+      this.lsystemElement.addEventListener('change', this._changeLSystem.bind(this));
 
    }
+
+   LSystemSettings.prototype = Object.create(Subscribable.prototype);
+
+   LSystemSettings.prototype._changeLSystem = function(evt) {
+
+      var lsystemKey = this.lsystemElement.children[this.lsystemElement.selectedIndex].value;
+
+      this.fire('lsystemChanged', LSystemSettings.LSYSTEMS[lsystemKey]);
+
+   };
+
+
+   LSystemSettings.LSYSTEMS = {
+      "Tree": L.examples.tree,
+      "Quadratic Snowflake": L.examples.quadratic_snowflake
+   };
 
 
    window.LSystemSettings = LSystemSettings;
@@ -2668,9 +2692,24 @@ blueprints._s = { };
 blueprints._s["lsystem-settings"] = function(data) {
 	var fragment = doc[cf]();
 	with (data||{}){
-	var elem0 = doc[ce]("h1");
+	var elem0 = doc[ce]("label");
+	elem0[sa]("for", "lsystem");
 	fragment[ac](elem0);
-	elem0[ac](doc[ct]("Lsystem settings"));
+	elem0[ac](doc[ct]("Pick an L-System to render: "));
+	
+	var elem3 = doc[ce]("select");
+	elem3[sa]("id", "lsystem");
+	fragment[ac](elem3);
+	lsystems.forEach(function(lsystem) {
+	var elem5 = doc[ce]("option");
+	var elem5_attr0 = "";
+	elem5_attr0 += "";
+	elem5_attr0 += lsystem;
+	elem5_attr0 += "";
+	elem5[sa]("value", elem5_attr0);
+	elem3[ac](elem5);
+	elem5[ac](doc[ct](lsystem));
+	});
 		}
 	return fragment;
 };
@@ -2782,22 +2821,22 @@ window.blueprints = blueprints;
        drawingBoard = new DrawingBoard(document.querySelector(".canvas-container")),
        context = drawingBoard.getContext();
 
-   function render(TurtleClass) {
+   function render(LSystemSpec, TurtleClass) {
 
       drawingBoard.clear();
 
-      L.examples.tree.system.iterate(7, function(out) {
-         //context.startRecording();
+      LSystemSpec.system.iterate(7, function(out) {
+
+         context.startRecording();
          
          new TurtleClass(
-            L.examples.tree.state
+            LSystemSpec.state
                .withPosition(drawingBoard.width / 2, drawingBoard.height, 0), 
             L.turtle.fns
          ).render(out, context, function() {
-            console.log('rendering done');
+            context.stopRecording();
          });
 
-         //context.stopRecording();
       });
 
       /*L.examples.quadratic_snowflake.system.iterate(5, function(out) {
@@ -2812,11 +2851,12 @@ window.blueprints = blueprints;
 
    }
 
-   render(L.Turtle.Simple);
+   var currentLSystem = L.examples.tree,
+       currentTurtleType = L.Turtle.Simple;
 
-   turtleSettings.on('typeChanged', render);
+   turtleSettings.on('typeChanged', function(type) { currentTurtleType = type; render(currentLSystem, type); });
+   lsystemSettings.on('lsystemChanged', function(lsystem) { currentLSystem = lsystem; render(lsystem, currentTurtleType); });
    
-
-
+   render(currentLSystem, currentTurtleType);
 
 }())

@@ -12,22 +12,22 @@
        drawingBoard = new DrawingBoard(document.querySelector(".canvas-container")),
        context = drawingBoard.getContext();
 
-   function render(TurtleClass) {
+   function render(LSystemSpec, TurtleClass) {
 
       drawingBoard.clear();
 
-      L.examples.tree.system.iterate(7, function(out) {
-         //context.startRecording();
+      LSystemSpec.system.iterate(7, function(out) {
+
+         context.startRecording();
          
          new TurtleClass(
-            L.examples.tree.state
+            LSystemSpec.state
                .withPosition(drawingBoard.width / 2, drawingBoard.height, 0), 
             L.turtle.fns
          ).render(out, context, function() {
-            console.log('rendering done');
+            context.stopRecording();
          });
 
-         //context.stopRecording();
       });
 
       /*L.examples.quadratic_snowflake.system.iterate(5, function(out) {
@@ -42,11 +42,12 @@
 
    }
 
-   render(L.Turtle.Simple);
+   var currentLSystem = L.examples.tree,
+       currentTurtleType = L.Turtle.Simple;
 
-   turtleSettings.on('typeChanged', render);
+   turtleSettings.on('typeChanged', function(type) { currentTurtleType = type; render(currentLSystem, type); });
+   lsystemSettings.on('lsystemChanged', function(lsystem) { currentLSystem = lsystem; render(lsystem, currentTurtleType); });
    
-
-
+   render(currentLSystem, currentTurtleType);
 
 }())
