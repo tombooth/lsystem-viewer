@@ -1,1 +1,6 @@
-<h1>Turtle settings</h1>
+<label for="turtleType">Pick the type of turtle to use when rendering: </label>
+<select id="turtleType">
+   ##turtles.forEach(function(turtle) {##
+   <option value="##= turtle##">##= turtle##</option>
+   ##});##
+</select>

@@ -25,6 +25,10 @@
 
    };
 
+   DrawingBoard.prototype.clear = function() {
+      this._context.clearRect(0, 0, this._canvas.width, this._canvas.height);
+   };
+
    DrawingBoard.prototype.getContext = function() {
 
       return this._contextProxy;

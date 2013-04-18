@@ -52,9 +52,24 @@ blueprints._s["structure"] = function(data) {
 blueprints._s["turtle-settings"] = function(data) {
 	var fragment = doc[cf]();
 	with (data||{}){
-	var elem0 = doc[ce]("h1");
+	var elem0 = doc[ce]("label");
+	elem0[sa]("for", "turtleType");
 	fragment[ac](elem0);
-	elem0[ac](doc[ct]("Turtle settings"));
+	elem0[ac](doc[ct]("Pick the type of turtle to use when rendering: "));
+	
+	var elem3 = doc[ce]("select");
+	elem3[sa]("id", "turtleType");
+	fragment[ac](elem3);
+	turtles.forEach(function(turtle) {
+	var elem5 = doc[ce]("option");
+	var elem5_attr0 = "";
+	elem5_attr0 += "";
+	elem5_attr0 += turtle;
+	elem5_attr0 += "";
+	elem5[sa]("value", elem5_attr0);
+	elem3[ac](elem5);
+	elem5[ac](doc[ct](turtle));
+	});
 		}
 	return fragment;
 };
