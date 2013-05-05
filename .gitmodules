@@ -13,3 +13,6 @@
 [submodule "deps/subscribable"]
 	path = deps/subscribable
 	url = https://github.com/steveukx/Subscribable.git
+[submodule "deps/codemirror"]
+	path = deps/codemirror
+	url = https://github.com/marijnh/CodeMirror.git

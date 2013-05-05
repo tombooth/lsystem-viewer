@@ -27,4 +27,95 @@ body {
    width: 100%;
 }
 
+.settings .panel {
+   padding: 0;
+   font-size: 13px;
+}
+
+.selector {
+   border-bottom: 1px solid #eee;
+   padding: 10px;
+}
+
+.definition {
+   margin: 10px;
+}
+
+.definition h1,
+.definition h2,
+.definition h3 {
+   margin: 0;
+   padding: 0;
+}
+
+.definition h1 {
+   font-size: 2.2em;
+}
+
+.definition h2 {
+   margin-top: 15px;
+}
+
+.definition ul {
+   padding: 0;
+   margin: 0;
+   list-item: none;
+}
+
+.definition li {
+   margin-top: 5px;
+}
+
+.definition input,
+.definition textarea {
+   display: block;
+   width: 410px;
+   border: 1px solid white;
+   padding: 5px;
+   font-size: 13px;
+}
+
+.definition input.key {
+   font-weight: bold;
+}
+
+.definition input:hover,
+.definition textarea:hover {
+   border: 1px solid #eee;
+}
+
+.definition input:focus,
+.definition textarea:focus {
+   border: 1px solid #ccc;
+   outline: none;
+}
+
+.definition input[disabled] {
+   color: #ccc;
+}
+
+.definition .constants input {
+   display: inline-block;
+   width: 358px;
+}
+
+.definition .constants input.key {
+   width: 40px;
+}
+
+.definition .vector label {
+   font-weight: bold;
+}
+
+.definition .vector input {
+   display: inline-block;
+   width: 115px;
+   margin-right: 10px;
+}
+
+
+
+
+
+
 

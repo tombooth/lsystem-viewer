@@ -1,6 +1,48 @@
-<label for="lsystem">Pick an L-System to render: </label>
-<select id="lsystem">
-   ##lsystems.forEach(function(lsystem) {##
-   <option value="##= lsystem##">##= lsystem##</option>
-   ##});##
-</select>
+<div class="selector">
+   <label for="lsystem">Pick an L-System to render: </label>
+   <select id="lsystem">
+      ##exampleDefinitions.forEach(function(definition, index) {##
+      <option value="##= index##">##= definition.name##</option>
+      ##});##
+   </select>
+</div>
+<div class="definition">
+
+   <h1>##= currentDefinition.name##</h1>
+
+   <h2>Axiom</h2>
+   <input type="text" value="##= currentDefinition.system.axiom##" />
+
+   <h2>Iterations</h2>
+   <input type="text" value="##= currentDefinition.iterations##" />
+
+   <h2>Constants</h2>
+   ##if (currentDefinition.system.constants) {##
+   <ul class="constants">
+      ##Object.keys(currentDefinition.system.constants).forEach(function(key) {##
+      <li>
+         <input type="text" class="key" value="##=key##" />
+         <input type="text" value="##=currentDefinition.system.constants[key]##" />
+      </li>
+      ##});##
+   </ul>
+   ##}##
+
+   <h2>Rules</h2>
+   ##if (currentDefinition.system.rules) {##
+   <ul>
+      ##Object.keys(currentDefinition.system.rules).forEach(function(key) {##
+      ##var rule = currentDefinition.system.rules[key];##
+      <li>
+         <input type="text" class="key" value="##=key##" />
+         ##if (typeof rule === 'function') {##
+         <textarea>##= rule##</textarea>
+         ##} else {##
+         <input type="text" value="##=rule##" />
+         ##}##
+      </li>
+      ##});##
+   </ul>
+   ##}##
+
+</div>

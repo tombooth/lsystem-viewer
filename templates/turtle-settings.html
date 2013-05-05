@@ -1,6 +1,39 @@
-<label for="turtleType">Pick the type of turtle to use when rendering: </label>
-<select id="turtleType">
-   ##turtles.forEach(function(turtle) {##
-   <option value="##= turtle##">##= turtle##</option>
-   ##});##
-</select>
+<div class="selector">
+   <label for="turtleType">Pick the type of turtle to use when rendering: </label>
+   <select id="turtleType">
+      ##turtles.forEach(function(turtle) {##
+      <option value="##= turtle##">##= turtle##</option>
+      ##});##
+   </select>
+</div>
+<div class="definition">
+
+   <h1>Initial State</h1>
+
+   <h2>Orientation</h2>
+   <ul>
+      ##& blueprints('edit-vector', { name: 'Position', vector: state.position }) ##
+      ##& blueprints('edit-vector', { name: 'Heading', vector: state.heading }) ##
+      ##& blueprints('edit-vector', { name: 'Left', vector: state.left }) ##
+      ##& blueprints('edit-vector', { name: 'Up', vector: state.up }) ##
+   </ul>
+
+   <h2>Defaults</h2>
+   <ul>
+      <li><h3>Distance</h3><input type="text" value="##= state.defaultDistance##" /></li>
+      <li><h3>Angle</h3><input type="text" value="##= state.defaultAngle##" /></li>
+   </ul>
+
+   <h2>Styling</h2>
+   <ul>
+      <li><h3>Line Width</h3><input type="text" value="##= state.lineWidth##" /></li>
+   </ul>
+
+   <h2>Tropism</h2>
+   <ul class="tropism">
+      <li><h3>Enabled</h3><input type="checkbox" class="enabled" value="##= state.tropismEnabled##" /></li>
+      <li><h3>Constant</h3><input type="text" class="constant" value="##= state.tropismConstant##" /></li>
+      ##& blueprints('edit-vector', { name: 'Vector', vector: state.tropism }) ##
+   </ul>
+
+</div>

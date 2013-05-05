@@ -8,20 +8,20 @@
 
    var settings = new Tweaker(document.querySelector(".settings")),
        lsystemSettings = new LSystemSettings(document.querySelector(".lsystem-settings")),
-       turtleSettings = new TurtleSettings(document.querySelector(".turtle-settings")),
+       turtleSettings = new TurtleSettings(document.querySelector(".turtle-settings"), L.Turtle.Simple),
        drawingBoard = new DrawingBoard(document.querySelector(".canvas-container")),
        context = drawingBoard.getContext();
 
-   function render(LSystemSpec, TurtleClass) {
+   function render() {
 
       drawingBoard.clear();
 
-      LSystemSpec.system.iterate(7, function(out) {
+      lsystemSettings.getLSystem().iterate(lsystemSettings.getIterations(), function(out) {
 
          context.startRecording();
          
-         new TurtleClass(
-            LSystemSpec.state
+         new (turtleSettings.getTurtle())(
+            turtleSettings.getInitialState()
                .withPosition(drawingBoard.width / 2, drawingBoard.height, 0), 
             L.turtle.fns
          ).render(out, context, function() {
@@ -30,24 +30,16 @@
 
       });
 
-      /*L.examples.quadratic_snowflake.system.iterate(5, function(out) {
-
-         new L.Turtle.Recursive(
-            L.examples.quadratic_snowflake.state
-               .withPosition(drawingBoard.width - 60, drawingBoard.height - 10, 0),
-            L.turtle.fns
-         ).render(out, context);
-
-      });*/
-
    }
 
-   var currentLSystem = L.examples.tree,
-       currentTurtleType = L.Turtle.Simple;
+   turtleSettings.on('typeChanged', render);
+   lsystemSettings.on('lsystemChanged', function(definition) {
 
-   turtleSettings.on('typeChanged', function(type) { currentTurtleType = type; render(currentLSystem, type); });
-   lsystemSettings.on('lsystemChanged', function(lsystem) { currentLSystem = lsystem; render(lsystem, currentTurtleType); });
+      turtleSettings.setInitialState(definition.state);
+      render();
+
+   });
    
-   render(currentLSystem, currentTurtleType);
+   lsystemSettings.setDefinition(L.examples.tree);
 
 }())
